@@ -25,7 +25,10 @@ the discussion.
   for a user which could never be edited afterwards.
 * Use GraphQL subscriptions for live updates to other browsers.  Currently only 
   the tab you are looking at updates as you type.
-
+* Add unit tests, so show how that works with GraphQL / MongoDB mocking.  The
+  client can run tests with a mock GraphQL instance I believe, and the server should
+  be able to be tested without any MongoDB running.
+  
 ## Setup
 
 I suggest running this in a separate Linux VM, as I do.  Set up nginx to proxy
