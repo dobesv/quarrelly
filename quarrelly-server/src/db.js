@@ -19,6 +19,7 @@ exports.getUserCommentForTopicId = async (topicId, userId) =>
 
 // Set a user's comment in a topic.  Creates a new topic if one didn't exist already
 exports.setUserCommentForTopicId = (topicId, userId, text) => topicsPromise.then((topics) =>
+    // Try to find an update the user's comment on this topic
     topics.updateOne({
         id: topicId,
         "comments.userId": userId
