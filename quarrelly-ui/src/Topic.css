@@ -18,13 +18,3 @@
   border: 2px solid #DDD;
 }
 
-.Topic .comment img.avatar {
-    float: left;
-}
-
-.Topic .comment p {
-    text-align: left;
-    margin-top: 10px;
-    margin-left: 100px;
-    min-height: 100px;
-}
