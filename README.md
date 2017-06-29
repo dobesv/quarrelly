@@ -1,4 +1,4 @@
-This is a little test project to play with React + GraphQL + MongoDB.
+This is a little test project to play with React + Apollo GraphQL + MongoDB.
 
 ## Setup
 
@@ -28,10 +28,14 @@ to the dev servers, e.g.:
 
 Now you can run the GraphQL server backend:
 
-    cd *-server && npm start
+    cd quarrelly-server && npm start
 
-Then in a new console you can run the react dev server:
+Then in another console, run the frontend dev server, which does live reload and other good stuff:
 
-    cd *-ui && npm start
+    cd quarrelly-ui && npm start
 
-And then can play with the app!
+Then you can access the app at http://localhost/ .
+
+If you choose to forego the nginx proxy, you can probably insert the server URL in 
+quarrelly-ui/src/index.js to specify http://localhost:8000/ as a parameter to 
+the ApolloClient constructor.
