@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+}
+
+.App-body {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.AddTopic {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.AddTopic button {
+  display: block;
+  width: 100%;
+}
+
+.App ul {
+  padding: 0px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

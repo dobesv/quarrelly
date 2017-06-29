@@ -1,0 +1,19 @@
+.Comment {
+    position: relative;
+    min-height: 100px;
+}
+.Comment .comment {
+    margin-bottom: 15px;
+    text-align: left;
+}
+.Comment .meta {
+    position: absolute;
+    bottom: 0px;
+    color: #AAA;
+    font-size: 10px;
+    margin-left: 100px;
+}
+.Comment .avatar {
+    float: left;
+    padding-right: 10px;
+}

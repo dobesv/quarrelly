@@ -1,0 +1,23 @@
+{
+  "name": "quarrelly-server",
+  "version": "1.0.0",
+  "description": "Play with GraphQL and MongoDB",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro -p 8000"
+  },
+  "author": "Dobes Vandermeer",
+  "license": "ISC",
+  "dependencies": {
+    "graphiql": "^0.11.2",
+    "graphql": "^0.10.3",
+    "graphql-server-micro": "^0.9.0",
+    "graphql-server-module-graphiql": "^0.9.0",
+    "graphql-tools": "^1.0.0",
+    "micro": "^7.3.3",
+    "micro-cors": "^0.0.4",
+    "microrouter": "^2.1.1",
+    "mongodb": "^2.2.29"
+  }
+}

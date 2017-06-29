@@ -1,0 +1,30 @@
+.Topic {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.Topic h2 {
+  text-align: left;
+  font-size: 2rem;
+  line-height: 3rem;
+}
+
+.Topic textarea {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  padding: 5px;
+  box-sizing: border-box;
+  border: 2px solid #DDD;
+}
+
+.Topic .comment img.avatar {
+    float: left;
+}
+
+.Topic .comment p {
+    text-align: left;
+    margin-top: 10px;
+    margin-left: 100px;
+    min-height: 100px;
+}
