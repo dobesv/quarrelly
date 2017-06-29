@@ -16,11 +16,15 @@ the discussion.
 
 ## Areas for improvement
 
-* The GraphQL usage isn't completely optimized - there's lots of input lag that could
-  almost certainly be eliminated with some further digging into Apollo-React techniques
+* There's lots of input lag that could almost certainly be eliminated with some further 
+  optimization of the Apollo/React/GraphQL code
 * Some "debouncing"/delay on the comment input would be nice to reduce the 
-  number of comment updates while typing
+  amount of network traffic while typing
 * Pressing ENTER to add a topic instead of clicking the button would be great
+* Possible race condition when adding comments could result in an "extra" comment
+  for a user which could never be edited afterwards.
+* Use GraphQL subscriptions for live updates to other browsers.  Currently only 
+  the tab you are looking at updates as you type.
 
 ## Setup
 
