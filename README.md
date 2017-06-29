@@ -14,7 +14,7 @@ more interesting.
 Currently you cannot delete Topics, but erasing your comment text will hide it from
 the discussion.
 
-## Area for improvement
+## Areas for improvement
 
 * The GraphQL usage isn't completely optimized - there's lots of input lag that could
   almost certainly be eliminated with some further digging into Apollo-React techniques
