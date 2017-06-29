@@ -1,6 +1,7 @@
 const db = require('./db');
 const { DateScalarType } = require('./gqlutil');
 
+// GraphQL resolver functions
 module.exports = {
     Query: {
         topics: () => db.listTopics(),

@@ -1,6 +1,7 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const resolvers = require('./resolvers');
 
+// GraphQL schema
 module.exports = makeExecutableSchema({
     typeDefs: `
         scalar Date
