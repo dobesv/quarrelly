@@ -28,7 +28,9 @@ the discussion.
 * Add unit tests, so show how that works with GraphQL / MongoDB mocking.  The
   client can run tests with a mock GraphQL instance I believe, and the server should
   be able to be tested without any MongoDB running.
-  
+* It would have been nice to use the same advanced ECMAscript features in the server
+  as in the UI (e.g. import syntax).
+
 ## Setup
 
 I suggest running this in a separate Linux VM, as I do.  Set up nginx to proxy
