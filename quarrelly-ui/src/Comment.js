@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import md5 from 'md5';
-import { gql, graphql, compose } from 'react-apollo';
+import { gql, graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 import './Comment.css';
 
@@ -28,7 +28,7 @@ const comment_gql = gql`
 
 class Comment extends Component {
     static propTypes = {
-        subscribeToNewComments: PropTypes.func.isRequired,
+        subscribeToChanges: PropTypes.func.isRequired,
     }
 
     gravatar(email) {
