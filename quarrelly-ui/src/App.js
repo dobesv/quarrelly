@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Topic from './Topic';
 import { gql, graphql } from 'react-apollo';
+import { List } from 'react-virtualized';
 
 class AddTopic extends Component {
   constructor() {
@@ -75,13 +76,20 @@ class App extends Component {
     if(this.props.data.error) {
       return <p>{'Error: '+this.props.data.error}</p>;
     }
-    const topics = this.props.data.topics.map((topic) => (
-      <Topic
+    const rowRenderer = ({index, isScrolling, isVisible, key, parent, style}) => {
+      const topic = this.props.data.topics[index];
+      if(!topic) return <p style={style} key={key}>???Missing???</p>
+      return <Topic
         key={topic.id}
         topicId={topic.id}
         userId={this.state.userId}
+        style={style}
         />
-    ));
+    };
+    const rowHeightCalculator = ({index}) => {
+      const topic = this.props.data.topics[index];
+      return 100 * topic.comments.length + 200;
+    }
     return (
       <div className="App">
         <div className="App-header">
@@ -99,7 +107,13 @@ class App extends Component {
             <p>Please enter a valid email address</p> :
             ''
           }
-          <ul>{topics}</ul>
+          <List
+            height={500}
+            rowCount={this.props.data.topics.length}
+            rowHeight={rowHeightCalculator}
+            rowRenderer={rowRenderer}
+            width={800}
+            />
         </div>
       </div>
     );

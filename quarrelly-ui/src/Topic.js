@@ -108,14 +108,14 @@ const CommentEditorWithMutate = compose(
 
 // Topic display component
 class Topic extends Component {
-  render() {
+    render() {
         if(this.props.data.loading) {
-            return <p>...</p>;
+            return <p style={this.props.style}>...</p>;
         } else if(this.props.data.error) {
-            return <p className="error">{'Error loading topic: '+this.props.data.error}</p>;
+            return <p style={this.props.style} className="error">{'Error loading topic: '+this.props.data.error}</p>;
         }
         const topic = this.props.data.topic;
-        return <div className="Topic">
+        return <div className="Topic" style={this.props.style}>
             <h2>{topic.title}</h2>
             <ul>{topic.comments.map((comment) => 
                 <Comment key={comment.id} topicId={topic.id} userId={comment.userId}/>)}</ul>
@@ -124,8 +124,7 @@ class Topic extends Component {
                 topicId={this.props.topicId}
                 />
         </div>;
-  }
-
+    }
 }
 
 export default graphql(gql`
