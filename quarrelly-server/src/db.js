@@ -1,24 +1,38 @@
-const MongoClient = require('mongodb').MongoClient;
+import { MongoClient } from 'mongodb';
+import { PubSub, withFilter } from 'graphql-subscriptions';
+import asyncIteratorFilter from './async-iterator-filter';
+
 var url = 'mongodb://localhost:27017/quarrelly';
 var connection = MongoClient.connect(url);
 var topicsPromise = connection.then((db) => db.collection('topics'));
 
+export const pubsub = new PubSub();
+
 
 // List all topics, including all comments recursively
-exports.listTopics = async () => (await topicsPromise).find({}).toArray();
+export const listTopics = async () => (await topicsPromise).find({}).toArray();
+
+// Watch for changes to any topic
+export const watchTopics = () => pubsub.asyncIterator('topics');
 
 // Get a topic by id, or null if none exists with that id
-exports.getTopicById = async (id) => (await topicsPromise).findOne({id: id});
+export const getTopicById = async (id) => (await topicsPromise).findOne({id: id});
+
+// Watch a topic for changes to any field or comment within the topic
+export const watchTopicWithId = (topicId) => asyncIteratorFilter(
+    (topic) => topic.id == topicId,
+    pubsub.asyncIterator('topics')
+);
 
 // Get a user's comment in a topic, or null if the user hasn't left a comment on that topic yet
-exports.getUserCommentForTopicId = async (topicId, userId) => 
+export const getUserCommentForTopicId = async (topicId, userId) => 
     (await topicsPromise).findOne(
         {id: topicId, "comments.userId": userId}, 
         {'comments.$': true}
     ).then((topic) => topic && topic.comments[0]);
 
 // Set a user's comment in a topic.  Creates a new topic if one didn't exist already
-exports.setUserCommentForTopicId = (topicId, userId, text) => topicsPromise.then((topics) =>
+export const setUserCommentForTopicId = (topicId, userId, text) => topicsPromise.then((topics) =>
     // Try to find an update the user's comment on this topic
     topics.updateOne({
         id: topicId,
@@ -44,11 +58,20 @@ exports.setUserCommentForTopicId = (topicId, userId, text) => topicsPromise.then
                 }
             }
         }) : Promise.resolve(updateResult)
-    ).then((updateResult) => exports.getUserCommentForTopicId(topicId, userId))
+    ).then((updateResult) => 
+        topics.findOne({id: topicId, "comments.userId": userId}
+    )).then((topic) => {
+        if(!topic || topic.comments.length == 0)
+            return null;
+        pubsub.publish('topics', topic);
+        const comment = topic.comments.find((c) => c.userId === userId);
+        pubsub.publish('comments', Object.assign({topicId}, comment));
+        return comment;
+    })
 );
 
 // Add a new topic with the given title/question
-exports.addTopic = (userId, title) => topicsPromise.then(async (topics) => {
+export const addTopic = (userId, title) => topicsPromise.then(async (topics) => {
     const newTopic = {
         id: String(Date.now()),
         title: title,
@@ -58,5 +81,12 @@ exports.addTopic = (userId, title) => topicsPromise.then(async (topics) => {
         comments: []
     };
     var insertResult = await topics.insertOne(newTopic);
-    return newTopic;;
+    pubsub.publish('topics', newTopic);
+    return newTopic;
 });
+
+// Watch a particular comment for a change
+export const watchComment = (topicId, userId) => asyncIteratorFilter(
+    (comment) => comment.topicId == topicId && comment.userId == userId,
+    pubsub.asyncIterator('comments')
+);

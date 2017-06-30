@@ -1,8 +1,8 @@
-const { makeExecutableSchema } = require('graphql-tools');
-const resolvers = require('./resolvers');
+import { makeExecutableSchema } from 'graphql-tools';
+import resolvers from './resolvers';
 
 // GraphQL schema
-module.exports = makeExecutableSchema({
+const schema = makeExecutableSchema({
     typeDefs: `
         scalar Date
         type Comment {
@@ -29,11 +29,18 @@ module.exports = makeExecutableSchema({
             addTopic(userId:ID!, title:String!): Topic
             comment(userId:ID!, topicId:ID!, text:String!): Comment
         }
+        type Subscription {
+            topics: Topic
+            topic(topicId:ID!): Topic
+            comment(topicId:ID!, userId:ID!): Comment
+        }
         schema {
             query: Query
             mutation: Mutation
+            subscription: Subscription
         }  
         `,
     resolvers: resolvers
 });
 
+export default schema;

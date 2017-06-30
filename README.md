@@ -29,35 +29,12 @@ the discussion.
   client can run tests with a mock GraphQL instance I believe, and the server should
   be able to be tested without any MongoDB running.
 * It would have been nice to use the same advanced ECMAscript features in the server
-  as in the UI (e.g. import syntax).
+  as in the UI (e.g. import syntax) (babel-node)
+* Authentication using JWT / Auth0 or similar
 
-## Setup
+## Running
 
-I suggest running this in a separate Linux VM, as I do.  Set up nginx to proxy
-to the dev servers, e.g.:
-
-    $ cat > /etc/nginx/sites-enabled/default  << EOF
-    server {
-      listen 80 default_server;
-      listen [::]:80 default_server;
-
-      server_name _;
-
-      location / {
-        proxy_pass http://127.0.0.1:3000;
-      }
-
-      location /graphql {
-        proxy_pass http://127.0.0.1:8000;
-      }
-
-      location /graphiql {
-        proxy_pass http://127.0.0.1:8000;
-      }
-    }
-    EOF
-
-Now you can run the GraphQL server backend:
+To run the GraphQL server backend:
 
     cd quarrelly-server && npm start
 
@@ -65,8 +42,5 @@ Then in another console, run the frontend dev server, which does live reload and
 
     cd quarrelly-ui && npm start
 
-Then you can access the app at http://localhost/ .
+Then you can access the app at http://localhost:3000/ .
 
-If you choose to forego the nginx proxy, you can probably insert the server URL in 
-quarrelly-ui/src/index.js to specify http://localhost:8000/ as a parameter to 
-the ApolloClient constructor.
