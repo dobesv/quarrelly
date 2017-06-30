@@ -125,4 +125,8 @@ export default graphql(gql`
       }
     }
   }
-`)(App);
+`, {
+  options: {
+    pollInterval: 30000
+  }
+})(App);
