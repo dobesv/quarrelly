@@ -16,7 +16,7 @@
     "graphql": "^0.13.0",
     "graphql-server-micro": "^0.9.0",
     "graphql-server-module-graphiql": "^0.9.0",
-    "graphql-tools": "^1.0.0",
+    "graphql-tools": "^2.0.0",
     "micro": "^7.3.3",
     "micro-cors": "^0.0.4",
     "microrouter": "^2.1.1",
