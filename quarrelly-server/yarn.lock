@@ -1582,9 +1582,9 @@ micromatch@^2.1.5:
     parse-glob "^3.0.4"
     regex-cache "^0.4.2"
 
-microrouter@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/microrouter/-/microrouter-2.1.1.tgz#c4de794fae6542f78cae801dfd468043246488df"
+microrouter@^3.0.0:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/microrouter/-/microrouter-3.1.1.tgz#d0a007c4f986d7e805bf6685eda4937d69002165"
   dependencies:
     url-pattern "^1.0.3"
 
