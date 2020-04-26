@@ -6,7 +6,7 @@
     "md5": "2.2.1",
     "prop-types": "15.5.10",
     "react": "15.6.1",
-    "react-apollo": "1.4.2",
+    "react-apollo": "3.1.5",
     "react-dom": "15.6.1",
     "react-relay": "1.1.0",
     "react-virtualized": "9.8.0",
