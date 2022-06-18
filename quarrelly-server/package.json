@@ -22,8 +22,8 @@
     "microrouter": "^2.1.1",
     "mongodb": "^2.2.29",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "subscriptions-transport-ws": "^0.7.3",
     "utf-8-validate": "^3.0.2"
   },
